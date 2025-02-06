@@ -1,1 +1,169 @@
-(()=>{"use strict";document.addEventListener("DOMContentLoaded",(()=>{!function(){const e=document.querySelector("#content"),t=document.createElement("h1");t.textContent="We welcome you to the world of healthy delights.";const n=document.createElement("p");n.textContent="Since 2015 our mission is to prove that a healthy lifestyle and hedonistic pleasure don't exclude each other but can go hand in hand.",e.appendChild(t),e.appendChild(n)}()})),document.querySelector("#btn-menu").addEventListener("click",(()=>{!function(){const e=document.querySelector("#content");e.innerHTML="";const t=document.createElement("h2");t.textContent="Menu";const n=document.createElement("iframe");n.src="menu.pdf",n.style.width="100%",n.style.height="1000px",e.appendChild(t),e.appendChild(n)}()})),document.querySelector("#btn-about").addEventListener("click",(()=>{!function(){const e=document.querySelector("#content");e.innerHTML="";const t=document.createElement("h2");t.textContent="About Us";const n=document.createElement("p");n.textContent="Our restaurant was founded in 2015 with the goal of serving healthy, delicious meals.",e.appendChild(t),e.appendChild(n);const o=document.createElement("form");[{label:"User Name",type:"text",id:"userName",required:!0},{label:"Password",type:"password",id:"password",required:!0},{label:"Stay logged in",type:"checkbox",id:"stayLoggedIn",required:!1}].forEach((e=>{const t=document.createElement("label");t.textContent=e.label,t.setAttribute("for",e.id);const n=document.createElement("input");n.type=e.type,n.id=e.id,n.required=e.required,o.appendChild(t),o.appendChild(n)}));const d=document.createElement("button");d.type="submit",d.textContent="Submit",o.appendChild(d),o.addEventListener("submit",(e=>{e.preventDefault();const t=document.querySelector("#stayLoggedIn").checked;alert("Login successful! Stay logged in: "+(t?"Yes":"No"))})),e.appendChild(o)}()})),document.querySelector("#btn-reservation").addEventListener("click",(()=>{!function(){const e=document.querySelector("#content");e.innerHTML="";const t=document.createElement("h2");t.textContent="Reservation",e.appendChild(t);const n=document.createElement("form");[{label:"Tag:",type:"date",id:"date"},{label:"Uhrzeit:",type:"time",id:"time"},{label:"Anzahl Personen:",type:"number",id:"people",min:"1"},{label:"E-Mail:",type:"email",id:"email"}].forEach((e=>{const t=document.createElement("label");t.textContent=e.label,t.setAttribute("for",e.id);const o=document.createElement("input");o.type=e.type,o.id=e.id,o.required=!0,e.min&&(o.min=e.min),n.appendChild(t),n.appendChild(o)}));const o=document.createElement("button");o.textContent="Anfrage senden",o.type="submit",n.appendChild(o),n.addEventListener("submit",(e=>{e.preventDefault(),console.log("Reservierung eingereicht:"),console.log("Tag:",document.getElementById("date").value),console.log("Uhrzeit:",document.getElementById("time").value),console.log("Anzahl Personen:",document.getElementById("people").value),console.log("E-Mail:",document.getElementById("email").value),alert("Ihre Reservierungsanfrage wurde gesendet!")})),e.appendChild(n)}()}))})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+
+;// ./src/pageLoad.js
+function loadPage() {
+    const content = document.querySelector("#content");
+
+    const welcome = document.createElement("h1");
+    welcome.textContent = "We welcome you to the world of healthy delights.";
+
+    const description = document.createElement("p");
+    description.textContent = "Since 2015 our mission is to prove that a healthy lifestyle and hedonistic pleasure don't exclude each other but can go hand in hand.";
+
+    content.appendChild(welcome);
+    content.appendChild(description);
+}
+
+;// ./src/menuLoad.js
+function loadMenu() {
+    const content = document.querySelector("#content");
+    content.innerHTML = "";
+
+    const welcome = document.createElement("h2");
+    welcome.textContent = "Menu";
+
+    const iframe = document.createElement("iframe");
+    iframe.src = "menu.pdf";
+    iframe.style.width="100%";
+    iframe.style.height="1000px";
+    
+    content.appendChild(welcome);
+    content.appendChild(iframe);
+}
+;// ./src/aboutLoad.js
+function loadAbout() {
+    const content = document.querySelector("#content");
+    content.innerHTML = "";
+
+    const about = document.createElement("h2");
+    about.textContent = "About Us";
+    
+    const text = document.createElement("p");
+    text.textContent = "Our restaurant was founded in 2015 with the goal of serving healthy, delicious meals.";
+
+    content.appendChild(about);
+    content.appendChild(text);
+
+
+    const form = document.createElement("form");
+
+    const fields = [
+        {label: "User Name", type: "text", id: "userName", required: true},
+        {label: "Password", type: "password", id: "password", required: true},
+        {label: "Stay logged in", type: "checkbox", id: "stayLoggedIn", required: false}
+    ]
+
+    fields.forEach(field => {
+        const label = document.createElement("label");
+        label.textContent = field.label;
+        label.setAttribute("for", field.id)
+
+        const input = document.createElement("input");
+        input.type = field.type;
+        input.id = field.id;
+        input.required = field.required;
+
+        form.appendChild(label);
+        form.appendChild(input);
+
+    })
+
+    const button = document.createElement("button");
+    button.type = "submit";
+    button.textContent = "Submit"
+    form.appendChild(button);
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const stayLoggedIn = document.querySelector("#stayLoggedIn").checked;
+
+        alert(`Login successful! Stay logged in: ${stayLoggedIn ? "Yes" : "No"}`);
+
+    })
+
+    content.appendChild(form);
+
+}
+;// ./src/reservationLoad.js
+function loadReservation() {
+    const content = document.querySelector("#content");
+    content.innerHTML = "";
+
+    const reservation = document.createElement("h2");
+    reservation.textContent = "Reservation";
+    content.appendChild(reservation);
+
+    const form = document.createElement("form");
+
+    // Erstelle ein Hilfsobjekt mit den Feldern
+    const fields = [
+        { label: "Tag:", type: "date", id: "date" },
+        { label: "Uhrzeit:", type: "time", id: "time" },
+        { label: "Anzahl Personen:", type: "number", id: "people", min: "1" },
+        { label: "E-Mail:", type: "email", id: "email" }
+    ];
+
+    // Erstelle die Input-Felder mit Labels
+    fields.forEach(field => {
+        const label = document.createElement("label");
+        label.textContent = field.label;
+        label.setAttribute("for", field.id);
+
+        const input = document.createElement("input");
+        input.type = field.type;
+        input.id = field.id;
+        input.required = true;
+        if (field.min) input.min = field.min;
+
+        form.appendChild(label);
+        form.appendChild(input);
+    });
+
+    // Absenden-Button
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Anfrage senden";
+    submitButton.type = "submit";
+
+    form.appendChild(submitButton);
+
+    // Event-Listener für das Formular
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log("Reservierung eingereicht:");
+        console.log("Tag:", document.getElementById("date").value);
+        console.log("Uhrzeit:", document.getElementById("time").value);
+        console.log("Anzahl Personen:", document.getElementById("people").value);
+        console.log("E-Mail:", document.getElementById("email").value);
+        alert("Ihre Reservierungsanfrage wurde gesendet!");
+    });
+
+    // Formular in den Inhalt einfügen
+    content.appendChild(form);
+}
+
+;// ./src/index.js
+// index.js
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadPage();
+})
+
+document.querySelector("#btn-menu").addEventListener("click", () => {
+    loadMenu();
+})
+
+document.querySelector("#btn-about").addEventListener("click", () => {
+    loadAbout();
+})
+
+document.querySelector("#btn-reservation").addEventListener("click", () => {
+    loadReservation();
+})
+/******/ })()
+;
